@@ -1,7 +1,9 @@
 <?php
 
-Route::post('/register', 'Auth\RegisterController@store');
-Route::post('/login', 'Auth\LoginController@login');
+Route::post('/register', 'RegisterController@store');
+Route::post('/login', 'AuthController@login');
+Route::post('/logout', 'AuthController@logout');
 Route::get('/user', 'UsersController@show');
+
 
 
