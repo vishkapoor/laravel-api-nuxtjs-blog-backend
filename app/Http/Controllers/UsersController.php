@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserLoginRequest;
 use App\Http\Resources\UserResource;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
-class LoginController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -44,12 +45,12 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        return new UserResource($request->user());
     }
 
     /**
