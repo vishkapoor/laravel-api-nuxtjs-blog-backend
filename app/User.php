@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Post;
+use App\Models\Topic;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -59,4 +61,23 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    /**
+     * @param  Topic $topic
+     * @return boolean
+     */
+    public function ownsTopic(Topic $topic)
+    {
+        return $this->id === $topic->user_id;
+    }
+
+        /**
+     * @param  Post $post
+     * @return boolean
+     */
+    public function ownsPost(Post $post)
+    {
+        return $this->id === $post->user_id;
+    }
+
 }
