@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Like;
 use App\Models\Topic;
 use App\Traits\Orderable;
 use App\User;
@@ -21,5 +22,10 @@ class Post extends Model
     public function topic()
     {
     	return $this->belongsTo(Topic::class);
+    }
+
+    public function likes()
+    {
+        return $this->morphMany(Like::class, 'likeable');
     }
 }

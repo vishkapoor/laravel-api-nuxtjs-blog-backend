@@ -22,7 +22,12 @@ Route::group(['prefix' => 'topics'], function() {
 		Route::patch('/{post}', 'PostsController@update')->middleware('auth:api');
 		Route::delete('/{post}', 'PostsController@destroy')->middleware('auth:api');
 
-	});
+		Route::group(['prefix' => '/{post}/likes'], function() {
 
+			Route::post('/', 'PostLikesController@store')->middleware('auth:api');
+
+		});
+
+	});
 
 });

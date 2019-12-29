@@ -63,6 +63,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * determine if user owns the topic
      * @param  Topic $topic
      * @return boolean
      */
@@ -71,13 +72,26 @@ class User extends Authenticatable implements JWTSubject
         return $this->id === $topic->user_id;
     }
 
-        /**
+    /**
+     * determine if user owns the post
      * @param  Post $post
      * @return boolean
      */
     public function ownsPost(Post $post)
     {
         return $this->id === $post->user_id;
+    }
+
+    /**
+     * determine if user has liked the post
+     * @param  Post $post
+     * @return boolean
+     */
+    public function hasLikedPost(Post $post)
+    {
+        return $post->likes()
+            ->byUserId($this->id)
+            ->count() === 1;
     }
 
 }
